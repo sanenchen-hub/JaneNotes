@@ -18,7 +18,7 @@ open class DataBaseHelper(
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(createNotes)
-        Toast.makeText(mContext, "数据库创建成功", Toast.LENGTH_SHORT).show()
+        Toast.makeText(mContext, "初始化完毕", Toast.LENGTH_SHORT).show()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

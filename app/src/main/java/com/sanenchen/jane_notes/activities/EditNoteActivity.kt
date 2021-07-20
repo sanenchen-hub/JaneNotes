@@ -82,14 +82,16 @@ class EditNoteActivity : AppCompatActivity() {
      */
     private fun saveNote() {
         val helper = DataBaseHelper(this, "JaneNotes", null, 1)
-        val db = helper.readableDatabase
+        val db = helper.writableDatabase
+        val value = ContentValues()
+        value.put("note_title", edit_title.editText?.text.toString())
+        value.put("note_content", edit_content.text.toString())
         if (id == -1) {
-            val value = ContentValues()
-            value.put("note_title", edit_title.editText?.text.toString())
-            value.put("note_content", edit_content.text.toString())
             db.insert("Notes", null, value)
             this.finish() // 结束
         } else {
+            db.delete("Notes", "id = ?", arrayOf("$id"))
+            db.insert("Notes", null, value)
             edit_content_view.text = edit_content.text
         }
     }
