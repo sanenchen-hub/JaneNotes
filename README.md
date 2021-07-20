@@ -1,6 +1,14 @@
 # JaneNotes
 JaneNotes
 
+# 版本记录
+## v0.1.1
+- 便签的基本功能以全部完成 
+### To-do List
+- 完成账户系统，同步系统
+
+### 随缘更新
+
 # LICENSE 
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
