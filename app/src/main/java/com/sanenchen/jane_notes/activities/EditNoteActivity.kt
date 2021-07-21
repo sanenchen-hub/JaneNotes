@@ -4,15 +4,16 @@
  */
 package com.sanenchen.jane_notes.activities
 
-import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import com.sanenchen.jane_notes.R
-import com.sanenchen.jane_notes.utils.DataBaseHelper
+import com.sanenchen.jane_notes.assets.NotesTable
 import kotlinx.android.synthetic.main.activity_edit_note.*
+import org.litepal.LitePal
+import org.litepal.extension.delete
 
 class EditNoteActivity : AppCompatActivity() {
     private var id = -1
@@ -77,29 +78,38 @@ class EditNoteActivity : AppCompatActivity() {
         } // 从预览模式切换到编辑模式
     }
 
+
     /**
      * 保存行为
      */
     private fun saveNote() {
-        val helper = DataBaseHelper(this, "JaneNotes", null, 1)
-        val db = helper.writableDatabase
-        val value = ContentValues()
-        value.put("note_title", edit_title.editText?.text.toString())
-        value.put("note_content", edit_content.text.toString())
-        if (id == -1) {
-            db.insert("Notes", null, value)
+        edit_content_view.text = edit_content.text
+        NotesTable(edit_title.editText?.text.toString(), edit_content.text.toString()).save() // 存入数据库
+        if (id == -1) { // 新建
             this.finish() // 结束
-        } else {
-            db.delete("Notes", "id = ?", arrayOf("$id"))
-            db.insert("Notes", null, value)
-            edit_content_view.text = edit_content.text
+        } else { // 修改
+            LitePal.delete<NotesTable>(id.toLong())
         }
     }
 
+    /**
+     * 监听 Toolbar 按钮
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> finish()
+        when (item.itemId) { // 监听返回键
+            android.R.id.home -> {
+                saveNote() // 防止用户误触
+                finish() // 结束
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    /**
+     * 自动保存，通过监听返回键，来保存，防止用户忘记保存
+     */
+    override fun onBackPressed() {
+        super.onBackPressed()
+        saveNote()
     }
 }

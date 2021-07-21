@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<litepal>
+    <dbname value="JaneNotes"/>
+    <version value="1"/>
+    <list>
+        <mapping class="com.sanenchen.jane_notes.assets.NotesTable"/>
+    </list>
+</litepal>
