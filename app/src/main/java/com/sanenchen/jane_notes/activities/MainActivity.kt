@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_menu_tasks -> {
                     transaction.replace(R.id.farme_fragment, tasksFragment)
-                    supportActionBar?.title = "简·任务" // 设置 Title
+                    supportActionBar?.title = "简·待办" // 设置 Title
                 }
             }
             transaction.commit()

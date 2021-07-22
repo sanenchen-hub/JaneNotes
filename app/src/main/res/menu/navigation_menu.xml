@@ -7,5 +7,5 @@
     <item
         android:id="@+id/navigation_menu_tasks"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"
-        android:title="任务" />
+        android:title="待办事项" />
 </menu>
