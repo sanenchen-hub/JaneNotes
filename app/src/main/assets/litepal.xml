@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <litepal>
     <dbname value="JaneNotes"/>
-    <version value="1"/>
+    <version value="2"/>
     <list>
         <mapping class="com.sanenchen.jane_notes.assets.NotesTable"/>
+        <mapping class="com.sanenchen.jane_notes.assets.TasksTable"/>
     </list>
 </litepal>

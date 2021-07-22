@@ -21,7 +21,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/edit_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,15 +30,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            app:boxBackgroundColor="#FFFFFF">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="标题 (可为空)"
-                android:maxLines="1"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:hint="标题"
+            android:inputType="textPersonName"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
 
         <EditText
             android:id="@+id/edit_content"
@@ -56,11 +53,9 @@
             android:gravity="start|top"
             android:hint="便签内容"
             android:inputType="textMultiLine"
-            android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:textColor="#CC000000"
-            android:textColorHint="#99000000"
             android:textSize="16sp"
             android:visibility="visible" />
 
@@ -85,7 +80,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:paddingLeft="16dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:textColor="#CC000000"

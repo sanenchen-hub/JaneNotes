@@ -17,6 +17,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.sanenchen.jane_notes.R
 import com.sanenchen.jane_notes.activities.EditNoteActivity
 import com.sanenchen.jane_notes.assets.NotesTable
@@ -55,15 +56,24 @@ class NotesFragment: Fragment() {
      * 查询数据，放入数据至 RecyclerView
      */
     private fun setData() {
-        LitePal.getDatabase() // 数据库初始化
 
         /**
          * 数据查询
          */
         val list: ArrayList<NotesData> = ArrayList()
         val notesQueryResult = LitePal.order("id desc").find<NotesTable>()
-        // 判断结果是否为 0
-        if (notesQueryResult.isEmpty()) {
+
+        for (result in notesQueryResult) { // 结果放入 list 中
+            // 便签清除机制（当标题和内容都为空时候，删除此便签）
+            if (result.noteTitle.isEmpty() && result.noteContent.isEmpty()) {
+                LitePal.delete<NotesTable>(result.id.toLong())
+                Snackbar.make(mView, "已舍弃空白便签", Snackbar.LENGTH_SHORT).show()
+            } else
+                list.add(NotesData(result.id, result.noteTitle, result.noteContent))
+        }
+
+        // 判断结果(list)是否为 空
+        if (list.isEmpty()) {
             mView.main_none_note.visibility = View.VISIBLE
             mView.main_nested_scroll.visibility = View.GONE
         } else {
@@ -71,18 +81,10 @@ class NotesFragment: Fragment() {
             mView.main_nested_scroll.visibility = View.VISIBLE
         }
 
-        for (result in notesQueryResult) { // 结果放入 list 中
-            // 便签清除机制（当标题和内容都为空时候，删除此便签）
-            if (result.noteTitle.isEmpty() && result.noteContent.isEmpty()) {
-                LitePal.delete<NotesTable>(result.id.toLong())
-            } else
-                list.add(NotesData(result.id, result.noteTitle, result.noteContent))
-        }
-
         // 配置 Adapter
         mView.main_notes_recycler.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        mView.main_notes_recycler.adapter = MainNotesAdapter(list, mView.context)
+        mView.main_notes_recycler.adapter = MainNotesAdapter(list, mView.context, mView)
     }
 
     /**
@@ -90,7 +92,8 @@ class NotesFragment: Fragment() {
      */
     class MainNotesAdapter(
         private val list: ArrayList<NotesData>,
-        private val context: Context
+        private val context: Context,
+        private val mView: View
     ) :
         RecyclerView.Adapter<MainNotesAdapter.ViewHolder>() {
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -132,10 +135,15 @@ class NotesFragment: Fragment() {
                 dialog.show()
                 view.alert_dialog_adapter_delete_button.setOnClickListener {
                     LitePal.delete<NotesTable>(list[position].id.toLong())
-                    Toast.makeText(context, "删除成功", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(mView, "删除成功", Snackbar.LENGTH_SHORT).show()
                     notifyItemRemoved(position)
                     list.removeAt(position) // 删除 ArrayList 中的数据
                     notifyItemRangeChanged(position, itemCount)
+                    // 判断 List 是否为空，为空则弹出提示，隐藏此界面
+                    if (list.isEmpty()) {
+                        mView.main_none_note.visibility = View.VISIBLE
+                        mView.main_nested_scroll.visibility = View.GONE
+                    }
                     dialog.dismiss()
                 }
                 view.alert_dialog_adapter_view_button.setOnClickListener {
