@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
@@ -28,10 +27,9 @@ import kotlinx.android.synthetic.main.item_note.view.*
 import org.litepal.LitePal
 import org.litepal.extension.delete
 import org.litepal.extension.find
-import org.litepal.extension.findAll
 
 class NotesFragment: Fragment() {
-    lateinit var mView: View
+    private lateinit var mView: View
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

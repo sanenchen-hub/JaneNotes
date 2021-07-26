@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         // 初始化 NavigationView
         main_navigation_view.setCheckedItem(R.id.navigation_menu_notes)
         main_navigation_view.setNavigationItemSelectedListener {
+            // 先关闭，后加载，防止卡顿
+            main_drawer_layout.closeDrawer(GravityCompat.START) // 关闭
             transaction = supportFragmentManager.beginTransaction()
             when (it.itemId) {
 
@@ -49,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             transaction.commit()
-            main_drawer_layout.closeDrawer(GravityCompat.START) // 关闭
             return@setNavigationItemSelectedListener true
         }
     }

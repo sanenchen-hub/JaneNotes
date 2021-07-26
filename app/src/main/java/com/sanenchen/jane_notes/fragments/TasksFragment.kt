@@ -6,13 +6,11 @@
 package com.sanenchen.jane_notes.fragments
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,7 +20,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.sanenchen.jane_notes.R
 import com.sanenchen.jane_notes.assets.TasksTable
 import kotlinx.android.synthetic.main.alert_dialog_add_task.view.*
-import kotlinx.android.synthetic.main.fragment_notes.view.*
 import kotlinx.android.synthetic.main.fragment_tasks.*
 import kotlinx.android.synthetic.main.fragment_tasks.view.*
 import kotlinx.android.synthetic.main.item_task.view.*
@@ -31,7 +28,7 @@ import org.litepal.extension.delete
 import org.litepal.extension.findAll
 
 class TasksFragment : Fragment() {
-    lateinit var mView: View
+    private lateinit var mView: View
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -151,7 +148,6 @@ class TasksFragment : Fragment() {
         }
 
         override fun getItemCount(): Int = list.size
-
     }
 
     /**

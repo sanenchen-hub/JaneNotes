@@ -14,7 +14,6 @@ import com.sanenchen.jane_notes.R
 import com.sanenchen.jane_notes.assets.NotesTable
 import kotlinx.android.synthetic.main.activity_edit_note.*
 import org.litepal.LitePal
-import org.litepal.extension.delete
 import org.litepal.extension.update
 
 class EditNoteActivity : AppCompatActivity() {
