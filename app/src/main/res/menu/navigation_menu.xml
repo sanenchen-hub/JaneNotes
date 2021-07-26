@@ -3,9 +3,16 @@
     <item
         android:id="@+id/navigation_menu_notes"
         android:icon="@drawable/ic_baseline_event_note_24"
-        android:title="便签" />
+        android:title="@string/notes" />
     <item
         android:id="@+id/navigation_menu_tasks"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"
-        android:title="待办事项" />
+        android:title="@string/tasks" />
+    <item android:title="@string/more">
+        <menu>
+            <item
+                android:id="@+id/navigation_menu_about"
+                android:title="@string/about" />
+        </menu>
+    </item>
 </menu>

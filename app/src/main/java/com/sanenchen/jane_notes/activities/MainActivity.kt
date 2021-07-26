@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import com.sanenchen.jane_notes.R
+import com.sanenchen.jane_notes.fragments.AboutFragment
 import com.sanenchen.jane_notes.fragments.NotesFragment
 import com.sanenchen.jane_notes.fragments.TasksFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         // 初始化 Fragment
         val notesFragment = NotesFragment() // 便签界面
         val tasksFragment = TasksFragment() // 任务界面
+        val aboutFragment = AboutFragment() // 任务界面
         var transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.farme_fragment, notesFragment)
         transaction.commit() // 同步
@@ -41,13 +43,17 @@ class MainActivity : AppCompatActivity() {
             transaction = supportFragmentManager.beginTransaction()
             when (it.itemId) {
 
-                R.id.navigation_menu_notes  -> {
+                R.id.navigation_menu_notes -> {
                     transaction.replace(R.id.farme_fragment, notesFragment)
                     supportActionBar?.title = "简·便签" // 设置 Title
                 }
                 R.id.navigation_menu_tasks -> {
                     transaction.replace(R.id.farme_fragment, tasksFragment)
                     supportActionBar?.title = "简·待办" // 设置 Title
+                }
+                R.id.navigation_menu_about -> {
+                    transaction.replace(R.id.farme_fragment, aboutFragment)
+                    supportActionBar?.title = "简·关于" // 设置 Title
                 }
             }
             transaction.commit()

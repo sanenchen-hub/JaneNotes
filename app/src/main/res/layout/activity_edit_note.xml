@@ -32,7 +32,7 @@
             android:layout_marginRight="16dp"
             android:background="#FFFFFF"
             android:ems="10"
-            android:hint="标题"
+            android:hint="@string/title"
             android:inputType="textPersonName"
             android:paddingTop="8dp"
             android:paddingBottom="8dp" />

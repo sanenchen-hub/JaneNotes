@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">简·便签</string>
+    <string name="title">标题</string>
+    <string name="notes_content">便签内容</string>
+    <string name="view">查看</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="add_new_task">新建任务</string>
+    <string name="save">保存</string>
+    <string name="about">关于</string>
+    <string name="notes">便签</string>
+    <string name="tasks">待办事项</string>
+    <string name="more">更多</string>
 </resources>

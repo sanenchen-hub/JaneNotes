@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JaneNotes</string>
+    <string name="title">Title</string>
+    <string name="notes_content">Notes content</string>
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add_new_task">New Task</string>
+    <string name="save">Save</string>
+    <string name="about">About</string>
+    <string name="notes">Notes</string>
+    <string name="tasks">Tasks</string>
+    <string name="more">More</string>
+</resources>

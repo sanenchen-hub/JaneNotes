@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:text="查看"
+        android:text="@string/view"
         app:backgroundTint="#FFFFFF" />
 
     <Button
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:text="编辑"
+        android:text="@string/edit"
         app:backgroundTint="#FFFFFF" />
 
     <Button
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:text="删除"
+        android:text="@string/delete"
         android:textColor="#CCFF0028"
         app:backgroundTint="#FFFFFF" />
 </LinearLayout>
